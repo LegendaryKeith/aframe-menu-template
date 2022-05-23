@@ -1,0 +1,286 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+        <a-assets>
+            <a-mixin
+            id="portal"
+            geometry="primitive: circle; segments: 64"
+            material="shader: oasisPortal; backgroundColor: #333; transparent: true"
+            raycastable
+            animation__mouseenterscale="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; easing: easeInOutQuad; dir: alternate; loop: true; startEvents: mouseenter; dur: 1000; pauseEvents: mouseleave"
+          ></a-mixin>            
+        </a-assets>
+      <a-plane position="0 0 -4" scale="25 25 25" rotation="-90 0 0" width="4" height="4" color="#c4cbb3"></a-plane>
+      <a-sky color="#abccf8"></a-sky>
+
+    <a-entity>
+        <a-camera>
+        </a-camera>
+        <!--<a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>-->
+
+        <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+        <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+    </a-entity>
+
+    <!--HUD/Menu-->
+    <a-plane
+    id="menu"
+    position="0 1.3 -0.8"
+    rotation="-20 0 0"
+    scale="0.7 0.5 0.7"
+    material="color: #fecbeb; opacity: 0.29"
+    geometry=""
+    shadow="cast:  false;  receive:  false"
+    visible="false"
+  >
+    <!--Ramagame Logo-->
+    <a-entity
+      text="value: Ramagame Logo; color: #f7a8ff"
+      rotation=""
+      position="0.28085 0.54859 0.07529"
+    ></a-entity>
+    <!--LogoAlternativePlace--><!--<a-entity text="value: Ramagame Logo; color: #f7a8ff" rotation="" position="0.28085 0.35739 0.05465"></a-entity>-->
+
+    <!--MenuButtons-->
+    <!--Use Mixins for material, animations and for the transparent element-->
+    <a-entity
+      transparent="false"
+      text="value:Menu; color: #f7a8ff"
+      rotation=""
+      position="0.0136 0.44687 0.01643"
+    ></a-entity>
+    <a-entity
+      transparent="false"
+      text="value:Avatar; color: #f7a8ff"
+      rotation=""
+      position="0.2136 0.44687 0.01643"
+    ></a-entity>
+    <a-entity
+      transparent="false"
+      text="value:Social; color: #f7a8ff"
+      rotation=""
+      position="0.4136 0.44687 0.01643"
+    ></a-entity>
+    <a-entity
+      transparent="false"
+      text="value:Games; color: #f7a8ff"
+      rotation=""
+      position="0.6136 0.44687 0.01643"
+    ></a-entity>
+    <a-entity
+      transparent="false"
+      text="value:Settings; color: #f7a8ff"
+      rotation=""
+      position="0.8136 0.44687 0.01643"
+    ></a-entity>
+
+    <!--Main Menu-->
+    <a-entity id="main-menu" visible="">
+      <!--Header-->
+      <a-entity
+        transparent="false"
+        text="value: Cyber \n Shooter; color: #ffffff"
+        rotation=""
+        position="0.0136 0.34687 0.01643"
+      ></a-entity>
+      <a-entity
+        transparent="false"
+        text="align: center; value: Welcome \n LegendaryKeith; color: #ffffff"
+        rotation=""
+        position="-0.00734 0.34687 0.01643"
+      ></a-entity>
+      <a-entity
+        transparent="false"
+        text="align: right; value: 21:00\n 12/04/20; color: #ffffff"
+        rotation=""
+        position="-0.02968 0.34687 0.01643"
+      ></a-entity>
+      <!--Options-->
+      <!--Options-->
+      <!--Left-->
+      <!--
+      Change avatar & equipement: animation__mouseenter="to: -0.35298 0.16733 0.1;" animation__mouseleave="to: -0.35298 0.16733 0.01252;" 
+      movement controls: animation__mouseenter="to: -0.35298 -0.04 0.1;"  animation__mouseleave="to: -0.35298 -0.04 0.01252;"
+
+      -->
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.2; width: 0.3"
+        text="value: Change Avatar \n &amp; Equipement; color: #ffffff; align: center; height: 1; width: 1"
+        rotation=""
+        position="-0.35298 0.16733 0.01252"
+        material=""
+      ></a-entity>
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.2; width: 0.3"
+        text="value: Movement \nControls; color: #ffffff; align: center; height: 1; width: 1"
+        rotation=""
+        position="-0.353 -0.04 0.01252"
+        material=""
+      ></a-entity>
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.2; width: 0.3"
+        text="value: Vehicles \n(Coming Soon); color: #ffffff; align: center; height: 1; width: 1"
+        rotation=""
+        position="-0.353 -0.247 0.01252"
+        material=""
+      ></a-entity>
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.2; width: 0.3"
+        text="value: About; color: #ffffff; align: center; height: 1; width: 1"
+        rotation=""
+        position="-0.353 -0.427 0.01252"
+        scale="1 0.7 1"
+        material=""
+      ></a-entity>
+      <!--Center-->
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.35; width: 0.38"
+        text="value: Game Promotion \n &amp; News Slider; color: #ffffff; align: center; height: 1; width: 1"
+        rotation=""
+        position="0 0.08733 0.01252"
+        material=""
+      ></a-entity>
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.4; width: 0.38"
+        text="value: Events; color: #ffffff; align: center; height: 1; width: 1"
+        rotation=""
+        position="0 -0.296 0.01252"
+        material=""
+      ></a-entity>
+
+      <!--Right-->
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.43; width: 0.3"
+        text="value: Friends Online; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+        rotation=""
+        position="0.35 0.05 0.01252"
+        material=""
+      ></a-entity>
+      <a-entity
+        mixin="menubuttons"
+        geometry="primitive: plane; height: 0.322; width: 0.3"
+        text="value: Notifications; color: #ffffff; align: center; height: 1; width: 1"
+        rotation=""
+        position="0.35 -0.33668 0.01252"
+        material=""
+      ></a-entity>
+    </a-entity>
+
+    <!--Avatar-->
+    <a-entity id="Avatar & Equipement" visible="false">
+      <!--clothes-->
+      <a-entity
+        id="avatar"
+        scale="0.5 0.5 0.5"
+        position="-0.27798 0 0.10413"
+      >
+        <a-entity
+          scale="0.1 0.1 0.1"
+          geometry="primitive: sphere"
+          position="0 0.217 0"
+        ></a-entity>
+        <a-entity
+          scale="0.2 0.3 0.1"
+          geometry=""
+          position="0 -0.11 0"
+        ></a-entity>
+        <a-entity
+          scale="0.05 0.05 0.05"
+          geometry="primitive: sphere"
+          position="0.16 -0.1 0"
+        ></a-entity>
+        <a-entity
+          scale="0.05 0.05 0.05"
+          geometry="primitive: sphere"
+          position="-0.16 -0.1 0"
+        ></a-entity>
+      </a-entity>
+      <!--Weapons-->
+      <a-entity id="weapons">
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.215; width: 0.15"
+          text="value: No\nBow; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="-0.09026 0.20809 0.01"
+          material=""
+        ></a-entity>
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.215; width: 0.15"
+          text="value: No\nGun; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="0.05933 0.208 0.01"
+          material=""
+        ></a-entity>
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.215; width: 0.3"
+          text="value: No Sword; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="0.00742 -0.05189 0.01"
+          material=""
+        ></a-entity>
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.215; width: 0.3"
+          text="value: No Secondary Gun; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="0.00742 -0.28076 0.01"
+          material=""
+        ></a-entity>
+      </a-entity>
+
+      <!--Inventory-->
+      <!--add icons and buttons in visual studio-->
+      <a-entity id="inventory">
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.43; width: 0.3"
+          text="value: No sword; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="0.35 0.05 -0.01252"
+          material=""
+        ></a-entity>
+
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.107; width: 0.1"
+          text="value: 1; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="0.25 -0.26 0.065"
+          material=""
+        ></a-entity>
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.107; width: 0.1"
+          text="value: 2; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="0.35 -0.26 0.065"
+          material=""
+        ></a-entity>
+        <a-entity
+          mixin="menubuttons"
+          geometry="primitive: plane; height: 0.107; width: 0.1"
+          text="value: 3; color: #ffffff; align: center; height: 1; width: 1; baseline: top"
+          rotation=""
+          position="0.45 -0.26 0.05551"
+          material=""
+        ></a-entity>
+      </a-entity>
+    </a-entity>
+  </a-plane>
+    </a-scene>
+  </body>
+</html>
